@@ -1,5 +1,6 @@
 import './App.css';
 import React, { Component } from 'react';
+import MainVideo from './Components/MainVideoPlayer';
 
 class App extends Component {
   constructor(props) {
@@ -8,7 +9,9 @@ class App extends Component {
   }
   render() { 
     return ( 
-      <h1>Hello</h1>
+      <React.Fragment>
+        <MainVideo/>
+      </React.Fragment>
      );
   }
 }
