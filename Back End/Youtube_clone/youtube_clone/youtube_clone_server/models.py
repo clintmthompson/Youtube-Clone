@@ -6,11 +6,11 @@ class Comments(models.Model):
     commentID = models.CharField(max_length=50)
     videoID = models.CharField(max_length=50)
     initial_comment = models.TextField(max_length=500)
-    likes = models.IntegerField()
+    likes = models.IntegerField(default=0)
 
 
 class SubComment(models.Model):
     sub_commentID = models.CharField(max_length=50)
     commentID = models.ForeignKey(Comments, blank=True, null=True, on_delete=models.CASCADE)
     sub_comment = models.TextField(max_length=500)
-    likes = models.IntegerField()
+    likes = models.IntegerField(default=0)
