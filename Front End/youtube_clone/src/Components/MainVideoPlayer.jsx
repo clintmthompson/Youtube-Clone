@@ -1,25 +1,19 @@
 import React, { Component } from 'react';
 
-class MainVideo extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            video: props.videoId,
-        }
-    }
+const MainVideo = (props) => {
 
 
-    render() { 
+    
         return (
             <div>
-                <h2 style={{width: '48%', position: 'fixed', top: '100px'}}>{this.state.video.id}</h2>
+                <h2 style={{width: '48%', position: 'fixed', top: '100px'}}>{props.videoInfo.data.items[0].snippet.title}</h2>
                     <iframe style={{position: 'fixed', top: '150px'}} width="48%" height="48%" title="Main Video Player"
-                    src={`https://www.youtube.com/embed/${this.state.video}`}>
+                    src={`https://www.youtube.com/embed/${props.videoId}`}>
                     </iframe>
-                <h3 style={{width: '48%', position: 'fixed', top: '600px'}}>{this.state.video.id}</h3>
+                <h3 style={{width: '48%', position: 'fixed', top: '600px'}}>{props.videoInfo.data.items[0].snippet.description}</h3>
             </div>
         );
-    }
+    
 }
  
 export default MainVideo;
