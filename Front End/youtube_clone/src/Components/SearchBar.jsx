@@ -16,14 +16,13 @@ class SearchBar extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        
         this.props.getVideo(this.state.searchValue);
 
         }
 
     render() { 
         return ( 
-            <div>
+            <div style={{position: 'fixed', top: '0px'}}>
                 <h1>Not YouTube</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input type="text" name="searchValue" onChange={this.handleChange} value={this.state.searchValue}/>
