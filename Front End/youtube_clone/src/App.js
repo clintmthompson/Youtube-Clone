@@ -10,6 +10,7 @@ class App extends Component {
     super(props);
     this.getVideo = this.getVideo.bind(this)
     this.selectVideo = this.selectVideo.bind(this)
+    this.getRelatedVideos = this.getRelatedVideos.bind(this)
     this.state = {
       videoInfo: {'data': {'items': [{'snippet': {'title': 'Fast Food Done Right With Gordon Ramsay', 'description': "Fast food recipes done right. From fried chicken to tostada's. #GordonRamsay #Cooking Gordon Ramsay's Ultimate Fit Food/Healthy, Lean and Fit ..."}}, {'title': 'title'}]}},
       videoId: "9i4SKHbhbqk",
@@ -318,6 +319,17 @@ class App extends Component {
     console.log(response)
     this.setState({
     videoInfo: response 
+    })
+
+    this.getRelatedVideos(this.state.videoId)
+
+  }
+
+  async getRelatedVideos(id){
+    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${id}&type=video&key=AIzaSyBjCT6gMd3j2uFMkfikqK7f4YNUIy0xjlE`);
+
+    this.setState({
+    data: response 
     })
 
   }
