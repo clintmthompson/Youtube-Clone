@@ -9,7 +9,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.getVideo = this.getVideo.bind(this)
-    this.state = { 
+    this.selectVideo = this.selectVideo.bind(this)
+    this.state = {
+      videoId: "9i4SKHbhbqk",
       data:{ "data":{
         "kind": "youtube#searchListResponse",
         "etag": "Tlkxmvbwyx0vNNPK-37em_f20I8",
@@ -299,12 +301,23 @@ class App extends Component {
 
 
   selectVideo(id){
+  
+    this.setState({
+      videoId: id
+   })
 
-//    this.setState({
-//      mainId: id
-//   })
+ //     this.getRelatedVideos(id)
   }
 
+
+  async getRelatedVideos(id){
+    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${this.state.videoId}&maxResults=8&type=video&key=AIzaSyBjCT6gMd3j2uFMkfikqK7f4YNUIy0xjlE`);
+
+    this.setState({
+    data: response 
+    })
+
+  }
 
   async getVideo(searchValue){
     let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${searchValue}&maxResults=8&type=video&key=AIzaSyBjCT6gMd3j2uFMkfikqK7f4YNUIy0xjlE`);
@@ -323,7 +336,7 @@ class App extends Component {
     return ( 
       <React.Fragment>
         <SearchBar getVideo={this.getVideo}  data={this.state.data}/>
-        <br></br><MainVideo data={this.state.data}/> 
+        <br></br><MainVideo data={this.state.data} videoId={this.state.videoId}/> 
         <Results selectVideo={this.selectVideo} data={this.state.data}/>
       </React.Fragment>
      );

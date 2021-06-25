@@ -5,24 +5,17 @@ const Results = (props) => {
 
     
     function displayResults(){
-        console.log('stuff')
-        console.log(props)
         let displayResults = (
-             
-            
-            props.data.data.items.map((item) => (
+                       
+            props.data.data.items.map((item, index) => (
             
             <React.Fragment>
             <h2 style={{width: '60%'}}>{item.snippet.title}</h2> 
-            <input onSubmit={props.selectVideo(item.data)} style={{width: '60%'}} type="image" src={`${item.snippet.thumbnails.high.url}`} border="0" alt="Submit" />
-            <p style={{width: '60%'}}>{item.snippet.description}</p>
+            <input data-index={index} onClick={() => props.selectVideo(item.id.videoId)} style={{width: '60%'}} type="image" src={`${item.snippet.thumbnails.high.url}`} border="0" alt="Submit" />
+            <h3 style={{width: '60%'}}>{item.snippet.description}</h3>
             </React.Fragment>
             ))
-            
-            
-
-            
-            
+       
          )
 
         if (props.results == ''){
