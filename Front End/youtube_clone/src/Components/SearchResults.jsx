@@ -5,10 +5,16 @@ const Results = (props) => {
 
     
     function displayResults(){
+
+        
+
+        const result = props.data.data.items.filter(item => item.snippet !== undefined);
+
         let displayResults = (
                        
-            props.data.data.items.map((item, index) => (
+            result.map((item, index) => (
             
+              
             <React.Fragment>
             <h2 style={{width: '60%'}}>{item.snippet.title}</h2> 
             <input data-index={index} onClick={() => props.selectVideo(item.id.videoId)} style={{width: '60%'}} type="image" src={`${item.snippet.thumbnails.high.url}`} border="0" alt="Submit" />
