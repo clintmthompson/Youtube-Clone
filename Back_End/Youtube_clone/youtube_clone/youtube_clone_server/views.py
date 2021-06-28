@@ -13,8 +13,8 @@ from django.http import Http404
 # Create your views here.
 class CommentsList(APIView):
 
-    def get(self, request, video_id):
-        comments = Comments.objects.filter(videoID=video_id)
+    def get(self, request):
+        comments = Comments.objects.all()
         serializer = CommentsSerializer(comments, many=True)
         return Response(serializer.data)
 
