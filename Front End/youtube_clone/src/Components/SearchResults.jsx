@@ -15,11 +15,11 @@ const Results = (props) => {
             result.map((item, index) => (
             
               
-            <React.Fragment>
-            <h2 style={{width: '60%'}}>{item.snippet.title}</h2> 
-            <input data-index={index} onClick={() => props.selectVideo(item.id.videoId)} style={{width: '60%'}} type="image" src={`${item.snippet.thumbnails.high.url}`} border="0" alt="Submit" />
-            <h3 style={{width: '60%', fontSize:'10px'}}>{item.snippet.description}</h3>
-            </React.Fragment>
+            <div style={{width: '40%'}}>
+            <h2>{item.snippet.title}</h2> 
+            <input data-index={index} onClick={() => props.selectVideo(item.id.videoId)} style={{width: '100%'}} type="image" src={`${item.snippet.thumbnails.high.url}`} border="0" alt="Submit" />
+            <h3 style={{fontSize:'10px'}}>{item.snippet.description}</h3>
+            </div>
             ))
        
          )
