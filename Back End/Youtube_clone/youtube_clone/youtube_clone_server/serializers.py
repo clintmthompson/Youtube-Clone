@@ -5,10 +5,10 @@ from .models import Comments, SubComment
 class CommentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comments
-        fields = ['id', 'videoID', 'initial_comment', 'likes']
+        fields = ['commentID', 'videoID', 'initial_comment', 'likes']
 
 
 class SubCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubComment
-        fields = ['id', 'sub_commentID', 'commentID', 'sub_comment', 'likes']
+        fields = ['sub_commentID', 'sub_comment', 'likes', 'commentID']
