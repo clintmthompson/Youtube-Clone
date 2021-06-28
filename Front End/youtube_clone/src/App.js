@@ -4,6 +4,7 @@ import MainVideo from './Components/MainVideoPlayer';
 import axios from 'axios'
 import SearchBar from './Components/SearchBar';
 import Results from './Components/SearchResults';
+import Comments from './Components/Comments';
 
 class App extends Component {
   constructor(props) {
@@ -356,6 +357,7 @@ class App extends Component {
         <SearchBar getVideo={this.getVideo}  data={this.state.data}/>
         <br></br><MainVideo data={this.state.data} videoId={this.state.videoId} videoInfo={this.state.videoInfo}/> 
         <Results selectVideo={this.selectVideo} data={this.state.data}/>
+        <Comments/>
       </React.Fragment>
      );
   }
