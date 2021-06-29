@@ -57,7 +57,7 @@ class Comments extends React.Component {
 
     render() {
         return (
-            <div style={{float: 'right', width: '28%', backgroundColor: 'gray', textAlign: 'center'}} class="form-floating">
+            <div style={{float: 'right', width: '28%', backgroundColor: 'black', color:'white', textAlign: 'center'}} class="form-floating">
                 <form onSubmit={this.handleSubmit} >
                     <h1>Comments</h1>
                     <textarea className="commentBox" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="commentBox" onChange={this.handleChange}></textarea>
