@@ -39,26 +39,27 @@ class Comments extends React.Component {
         await this.postComment();
 
     }
-   
-    
-    
+
     render() {
-        let result =  (this.state.comment.map((comment) => (
-            return(
-                <div>
-
-
-                    <div style={{float: 'right', width: '28%', backgroundColor: 'gray', textAlign: 'center'}} class="form-floating">
-                        <h1>Comments</h1>
-                        <textarea className="commentBox" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="commentBox" onChange={this.handleChange}></textarea>
-                        {/* <label for="floatingTextarea">Comments</label> */}
-                        <button type="submit">Submit</button>
-                    </div>
+        let result = (this.state.comment.map((comment) => (
+            <div>
+                <form onSubmit={this.handleSubmit} style={{float: 'right', width: '28%', backgroundColor: 'gray', textAlign: 'center'}} class="form-floating">
+                    <h1>Comments</h1>
+                    <textarea className="commentBox" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="commentBox" onChange={this.handleChange}></textarea>
+                    {/* <label for="floatingTextarea">Comments</label> */}
+                    <button type="submit">Submit</button>
+                </form>
+                <br />
+                <br />
+                <p>{comment}</p>
             </div>
         )))
+        return (
+            result
+            );
+
     }   
 
 }
 
- 
 export default Comments;
