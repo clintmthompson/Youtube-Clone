@@ -5,12 +5,10 @@ import './comments.css';
 class Comments extends React.Component {
     constructor(props) {
         super(props);
+        this.listOfComments = this.listOfComments.bind(this)
         this.state = {
-            comment: {
-                videoID: null,
-                initial_comment: null,
-                likes: null
-            }
+            videoId: props.videoId,
+            comment: ['Comment', 'Comment', 'Comment', 'Comment', 'Comment', 'Comment', ]
         }
     }
 
@@ -22,8 +20,7 @@ class Comments extends React.Component {
 
     async postComment() {
         let comment = {
-            videoID: this.state.videoID,
-            initial_comment: this.state.initial_comment,
+            videoId: this.state.videoId,
         }
         try{
             let response = await axios.post('http://127.0.0.1:8000/comment/', comment);
@@ -41,7 +38,7 @@ class Comments extends React.Component {
     }
 
     listOfComments = () =>{
-        let results = (this.state.comments.map((comment) => (
+        let results =(this.state.comment.map((comment) => (
             <div style={{border: '2px solid gray'}}>
             <p>{comment}</p>
             <button>Like</button>
@@ -51,15 +48,20 @@ class Comments extends React.Component {
             )))
 
             
-            return <div style={{backgroundColor: 'white', color: 'black', textAlign: 'left', padding: 10}}>{results}</div>
+            return <div style={{backgroundColor: 'white', color: 'black', textAlign: 'left', padding: 10}}>
+                        {results}
+                    </div>
             
             
     }
 
     render() {
-        let result = (this.state.comment.map((comment) => (
-            <div>
-                <form onSubmit={this.handleSubmit} style={{float: 'right', width: '28%', backgroundColor: 'gray', textAlign: 'center'}} class="form-floating">
+       
+
+    
+        return (
+                <div style={{float: 'right', width: '28%', backgroundColor: 'gray', textAlign: 'center'}}>
+                <form onSubmit={this.handleSubmit}  class="form-floating">
                     <h1>Comments</h1>
                     <textarea className="commentBox" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="commentBox" onChange={this.handleChange}></textarea>
                     {/* <label for="floatingTextarea">Comments</label> */}
@@ -67,14 +69,10 @@ class Comments extends React.Component {
                 </form>
                 <br />
                 <br />
-                <p>
-                    <h1>Comments</h1>
+                <p> 
                     {this.listOfComments()}
                 </p>
             </div>
-        )))
-        return (
-            result
             );
 
     }   

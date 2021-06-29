@@ -358,7 +358,7 @@ class App extends Component {
         <SearchBar getVideo={this.getVideo}  data={this.state.data}/>
         <br></br><MainVideo data={this.state.data} videoId={this.state.videoId} videoInfo={this.state.videoInfo}/> 
         <Results selectVideo={this.selectVideo} data={this.state.data}/>
-        <Comments/>
+        <Comments videoId={this.state.videoId}/>
       </React.Fragment>
      );
   }
