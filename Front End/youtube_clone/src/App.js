@@ -4,7 +4,8 @@ import MainVideo from './Components/MainVideoPlayer';
 import axios from 'axios'
 import SearchBar from './Components/SearchBar';
 import Results from './Components/SearchResults';
-import Comments from './Components/Comments';
+import Comments from './Components/Comments/Comments';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
   constructor(props) {
