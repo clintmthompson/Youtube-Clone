@@ -5,14 +5,12 @@ import './comments.css';
 class Comments extends React.Component {
     constructor(props) {
         super(props);
+        this.listOfComments = this.listOfComments.bind(this);
         this.state = {
-            comment: {
-                videoID: null,
-                initial_comment: null,
-                likes: null
+            videoID: props.videoID,
             }
         }
-    }
+    
 
     handleChange = (event) => {
         this.setState({
@@ -22,11 +20,10 @@ class Comments extends React.Component {
 
     async postComment() {
         let comment = {
-            videoID: this.state.videoID,
-            initial_comment: this.state.initial_comment,
+            videoID: this.state.videoID
         }
         try{
-            let response = await axios.post('http://127.0.0.1:8000/comment/', comment);
+            let response = await axios.post('http://127.0.0.1:8000/comments/', comment);
             console.log(response.data);
         }
         catch (ex) {
@@ -40,29 +37,27 @@ class Comments extends React.Component {
 
     }
 
-    listOfComments = () =>{
-        let results = (this.state.comments.map((comment) => (
+    listOfComments = () => {
+        this.props.getComments();
+        let results = (this.props.comments.map((comment) => (
             <div style={{border: '2px solid gray'}}>
-            <p>{comment}</p>
-            <button>Like</button>
-            <button>Dislike</button>
-            <p>Likes: 0</p>
+                <p>{comment.initial_comment}</p>
+                <button>Like</button>
+                <button>Dislike</button>
+                <p>{comment.likes}</p>
             </div>
             )))
-
-            
-            return <div style={{backgroundColor: 'white', color: 'black', textAlign: 'left', padding: 10}}>{results}</div>
-            
-            
+        return (
+            <div style={{backgroundColor: 'white', color: 'black', textAlign: 'left', padding: 10}}>{results}</div>
+        )
     }
 
     render() {
-        let result = (this.state.comment.map((comment) => (
-            <div>
-                <form onSubmit={this.handleSubmit} style={{float: 'right', width: '28%', backgroundColor: 'gray', textAlign: 'center'}} class="form-floating">
+        return (
+            <div style={{float: 'right', width: '28%', backgroundColor: 'gray', textAlign: 'center'}} class="form-floating">
+                <form onSubmit={this.handleSubmit} >
                     <h1>Comments</h1>
                     <textarea className="commentBox" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="commentBox" onChange={this.handleChange}></textarea>
-                    {/* <label for="floatingTextarea">Comments</label> */}
                     <button type="submit">Submit</button>
                 </form>
                 <br />
@@ -72,13 +67,8 @@ class Comments extends React.Component {
                     {this.listOfComments()}
                 </p>
             </div>
-        )))
-        return (
-            result
-            );
-
+        );
     }   
-
 }
 
 export default Comments;
